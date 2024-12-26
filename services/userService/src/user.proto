@@ -1,0 +1,79 @@
+syntax = "proto3";
+package user;
+
+service UserService {
+  rpc CreateAccaunt(CreateAccauntReq) returns (CreateAccauntRes);
+  rpc Login(LoginReq) returns (LoginRes);
+  rpc EditProfile(EditProfileReq) returns (EditProfileRes);
+  rpc GetUser(GetUserReq) returns (GetUserRes);
+  rpc GetFriends(GetFriendsReq) returns (GetFriendsRes);
+  rpc GetUsers(GetUsersReq) returns (GetUsersRes);
+  rpc AddFriend(AddFriendReq) returns (AddFriendRes);
+}
+
+
+// Request types
+
+message CreateAccauntReq {
+  string name = 1;
+  string login = 2;
+  string password = 3;
+}
+message CreateAccauntRes {
+  bool success = 1;
+}
+
+message LoginReq {
+  string login = 1;
+  string password = 2;
+}
+message LoginRes {
+  string token = 1;
+}
+
+message EditProfileReq {
+  optional string city = 1;
+}
+message EditProfileRes {
+  bool success = 1;
+}
+
+message GetUserReq {
+  string token = 1;
+}
+message GetUserRes {
+  string id = 1;
+  string name = 2;
+}
+
+message GetFriendsReq {
+  optional string token = 1;
+}
+message GetFriendsRes {
+  repeated PublicUser friends = 1;
+}
+
+message GetUsersReq {
+  optional string name = 1;
+  optional string city = 2;
+}
+message GetUsersRes {
+  repeated PublicUser users = 1;
+}
+
+message AddFriendReq {
+  string token = 1;
+  string friendId = 2;
+}
+message AddFriendRes {
+  bool success = 1;
+}
+
+
+// General types
+
+message PublicUser {
+  string id = 1;
+  string name = 2;
+  string city = 3;
+}

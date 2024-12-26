@@ -1,0 +1,65 @@
+syntax = "proto3";
+package message;
+
+import "google/protobuf/timestamp.proto";
+
+service MessageService {
+  rpc SendMessage(SendMessageReq) returns (SendMessageRes);
+  rpc GetMessages(GetMessagesReq) returns (GetMessagesRes);
+  rpc CreateChat(CreateChatReq) returns (CreateCharRes);
+  rpc GetChats(GetChatsReq) returns (GetChatsRes);
+}
+
+
+// Request types
+
+message SendMessageReq {
+  string token = 1;
+  string message = 2;
+  string chatId = 3;
+}
+message SendMessageRes {
+  string userName = 1;
+  string message = 2;
+  string chatId = 3;
+}
+
+message GetMessagesReq {
+  string token = 1;
+  string chatId = 2;
+}
+message GetMessagesRes {
+  repeated Message messages = 1;
+}
+
+message CreateChatReq {
+  string token = 1;
+  string title = 2;
+  repeated string userIds = 3;
+}
+message CreateCharRes {
+  bool success = 1;
+}
+
+message GetChatsReq {
+  string token = 1;
+}
+message GetChatsRes {
+  repeated Chat chats = 1;
+}
+
+
+// General types
+
+message Chat {
+  string id = 1;
+  string title = 2;
+}
+
+message Message {
+  string message = 1;
+  string userFromName = 2;
+  string userFromId = 3;
+  int64 createdAt = 4;
+}
+
