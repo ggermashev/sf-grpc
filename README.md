@@ -64,7 +64,7 @@
 docker-compose up --build
 ```
 
-Для демонстрации функционала был реализован mock-запрос на отправку сообщения. MessageService получает запрос SendMessage(token, message, chatId). В свою очередь, MessageService вызывает userService, чтобы по токену получить имя пользователя, отправившего сообщение. В результате, MessageService возвращает ответ формата (userName, message, charId)
+Для демонстрации функционала был реализован mock-запрос на отправку сообщения. MessageService получает запрос SendMessage(token, message, chatId). В свою очередь, MessageService вызывает userService, чтобы по токену получить имя пользователя, отправившего сообщение. В результате, MessageService возвращает ответ формата (userName, message, chatId)
 
 - [Реализация UserService](./services/userService/src/userApp.js)
 - [Реализация MessageService](./services/messageService/src/messageApp.js)
